@@ -1,8 +1,8 @@
-package FinalOOP;
+package FinalOOP.model.network;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Network {
     private List<Node> listNodes;
@@ -45,6 +45,7 @@ public class Network {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -54,14 +55,14 @@ public class Network {
                 return edge;
             }
         }
-        System.out.println(startID + "--" + destinationID);
-        System.out.println("Not existed edge");
+//        System.out.println(startID + "--" + destinationID);
+//        System.out.println("Not existed edge");
         return null;
     }
 
     public void addEdge(Edge edge) {
         if (edge.getDestination().getId() == edge.getStart().getId()) {
-            System.out.println("Error1");
+            System.out.println("Duplicated node");
             return;
         } else if (this.hasEdge(edge)) {
             System.out.println("existed edge!!");
@@ -74,7 +75,8 @@ public class Network {
             } else {
                 this.listEdges.get(edge.getDestination().getId()).add(new Edge(edge.getDestination(), edge.getStart()));
             }
-            System.out.println("Add!!");
+
+            System.out.println("Add!!"+edge.getStart().getId() +"-" + edge.getDestination().getId());
         }
     }
 
@@ -84,7 +86,7 @@ public class Network {
                 return node;
             }
         }
-        System.out.println("Node not existed!!");
+        System.out.println("Node " +id +" not existed!!");
         return null;
     }
 
@@ -110,12 +112,13 @@ public class Network {
     }
 
     public int totalEdges() {
-        int count = 0;
-        for (Node node : listNodes) {
-            count += this.listEdges.get(node.getId()).size();
+        int total = 0;
+        for (int i = 0; i < this.listNodes.size(); i++) {
+            total += countEdgesofNode(findById(i));
         }
-        return count / 2;
+        return total;
     }
+
 
     @Override
     public String toString() {

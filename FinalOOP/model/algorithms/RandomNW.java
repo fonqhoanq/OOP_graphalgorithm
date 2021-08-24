@@ -1,8 +1,12 @@
-package FinalOOP;
+package FinalOOP.model.algorithms;
+
+import FinalOOP.model.network.Edge;
+import FinalOOP.model.network.Network;
+import FinalOOP.model.network.Node;
 
 import java.util.Random;
 
-public class RandomNW implements Algorithms{
+public class RandomNW implements Algorithms {
 
     private Network network;
     private int totalNodes;

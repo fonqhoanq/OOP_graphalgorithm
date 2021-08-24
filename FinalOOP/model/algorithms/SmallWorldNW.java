@@ -1,8 +1,12 @@
-package FinalOOP;
+package FinalOOP.model.algorithms;
+
+import FinalOOP.model.network.Edge;
+import FinalOOP.model.network.Network;
+import FinalOOP.model.network.Node;
 
 import java.util.Random;
 
-public class SmallWorldNW implements Algorithms{
+public class SmallWorldNW implements Algorithms {
     private Network network;
     private int totalNodes;
     private double rewireProbality;
@@ -74,7 +78,7 @@ public class SmallWorldNW implements Algorithms{
             network.addNode(new Node(i));
         }
         createEdge();
-        rewireEdge();
+//        rewireEdge();
     }
 
     public void rewireEdge(){
@@ -88,7 +92,18 @@ public class SmallWorldNW implements Algorithms{
                 }
                 Random random = new Random();
                 double prob = random.nextDouble();
-                if (prob < this.rewireProbality && this.network.findEdgebyId(i,num).getProbality() != 1){
+                if (rewireProbality == 1&& this.network.findEdgebyId(i,num).getProbality() != 1){
+                    System.out.println("old: "+i+"-"+num);
+                    this.network.removeEdge(this.network.findEdgebyId(i,num));
+                    System.out.println("11111");
+                    int index;
+                    do{
+                        index = random.nextInt(totalNodes);
+                    }while(index == i || index == num || this.network.findEdgebyId(i,index) != null );
+                    this.network.addEdge(new Edge(new Node(i),new Node(index),1.0));
+                    System.out.println("new: "+i+"-"+index);
+                }
+                else if (prob < this.rewireProbality && this.network.findEdgebyId(i,num).getProbality() != 1){
                     System.out.println("old: "+i+"-"+num);
                     this.network.removeEdge(this.network.findEdgebyId(i,num));
                     int index;

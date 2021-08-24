@@ -1,4 +1,4 @@
-package FinalOOP;
+package FinalOOP.model.network;
 
 public class Node {
     private int id;

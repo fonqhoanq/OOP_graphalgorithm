@@ -1,4 +1,7 @@
-package FinalOOP;
+package FinalOOP.model;
+
+import FinalOOP.model.algorithms.Algorithms;
+import FinalOOP.model.display.Display;
 
 public class Context {
     private Algorithms algo;
@@ -14,15 +17,14 @@ public class Context {
 
     public Display getDisplay() {
         return display;
+
+
     }
 
     public void setDisplay(Display display) {
         this.display = display;
     }
 
-    
 
-    public void execute(){
 
-    }
 }

@@ -1,4 +1,4 @@
-package FinalOOP;
+package FinalOOP.model.algorithms;
 
 public interface Algorithms {
     public void createEdge();
